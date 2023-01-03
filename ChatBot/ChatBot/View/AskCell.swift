@@ -1,0 +1,60 @@
+//
+//  AskCell.swift
+//  ChatBot
+//
+//  Created by Jonas Romankiewicz on 04.12.22.
+//
+import UIKit
+
+class AskCell: UITableViewCell {
+    
+    
+    let messageBubbleView: UIView = {
+        let bubbleView = UIView()
+        bubbleView.layer.masksToBounds = true
+        bubbleView.layer.cornerRadius = 20
+        bubbleView.layer.borderWidth = 2
+        bubbleView.layer.borderColor = UIColor.systemGray5.cgColor
+        bubbleView.translatesAutoresizingMaskIntoConstraints = false
+        return bubbleView
+    }()
+    
+    var textField: UITextField = {
+        let textField = UITextField()
+        textField.textColor = .black
+        textField.font = UIFont.boldSystemFont(ofSize: 16)
+        textField.textAlignment = .right
+        textField.placeholder = "Teile uns dein Anliegen mit.."
+        textField.layer.masksToBounds = true
+        textField.layer.cornerRadius = 10
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
+        
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupViews() {
+        contentView.addSubview(messageBubbleView)
+        messageBubbleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
+        messageBubbleView.leadingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor).isActive = true
+        messageBubbleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        messageBubbleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
+        
+        messageBubbleView.addSubview(textField)
+        textField.trailingAnchor.constraint(lessThanOrEqualTo: messageBubbleView.trailingAnchor, constant: -20).isActive = true
+        textField.leadingAnchor.constraint(equalTo: messageBubbleView.leadingAnchor, constant: 15).isActive = true
+        textField.topAnchor.constraint(equalTo: messageBubbleView.topAnchor, constant: 10).isActive = true
+        textField.bottomAnchor.constraint(equalTo: messageBubbleView.bottomAnchor, constant: -10).isActive = true
+    }
+    
+}
+
+   
